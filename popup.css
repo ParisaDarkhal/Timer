@@ -1,0 +1,17 @@
+body {
+  width: 400px;
+  height: 400px;
+}
+
+h1,
+h2 {
+  color: rgb(63, 105, 182);
+}
+
+#name {
+  color: rgb(6, 158, 115);
+}
+
+#timer {
+  color: coral;
+}
