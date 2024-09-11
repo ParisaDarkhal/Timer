@@ -18,28 +18,21 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     chrome.storage.sync.get(["notificationTime"], (res) => {
       const notificationTime = res.notificationTime ?? 1000;
       if (time % notificationTime === 0 && time / notificationTime === 1) {
-        chrome.notifications.create({
-          type: "basic",
-          // iconUrl: "icon.png",
-          title: "Timer Extension",
-          message: `${notificationTime} seconds passed.`,
-          priority: 2,
-        });
+        chrome.notifications.create(
+          {
+            type: "basic",
+            iconUrl: "icon.png",
+            title: "Timer Extension",
+            message: `${notificationTime} seconds passed.`,
+            priority: 1,
+          },
+          function (context) {
+            console.log("Last error:", chrome.runtime.lastError);
+          }
+        );
         console.log("times up");
       }
     });
-
-    // chrome.storage.sync.get(["notificationTime"], (res) => {
-    //   const notificationTime = res.notificationTime ?? 1000;
-    //   if (time % notificationTime === 0 && time / notificationTime === 1) {
-    //     this.registration.showNotification("Timer Extension", {
-    //       body: `${notificationTime} seconds passed.`,
-    //       icon: "icon.png",
-    //       priority: 2,
-    //     });
-    //     console.log("times up");
-    //   }
-    // });
   });
 });
 
